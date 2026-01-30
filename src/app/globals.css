@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-primary-light: #818cf8;
+
+  --color-secondary: #f59e0b;
+  --color-secondary-dark: #d97706;
+
+  --color-accent: #10b981;
+  --color-accent-dark: #059669;
+
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #10b981;
+
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-tertiary: #f1f5f9;
+  --color-bg-card: #ffffff;
+  --color-bg-hover: #e2e8f0;
+  --color-glass-bg: rgba(255, 255, 255, 0.75);
+  --color-glass-border: rgba(148, 163, 184, 0.35);
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+
+  --color-border-primary: #e2e8f0;
+  --color-border-secondary: #cbd5e1;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --animate-fade-in: fadeIn 0.3s ease-out;
+  --animate-pulse-slow: pulse 3s infinite;
+}
+
+/* Custom Utilities that might still be useful as abstractions */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 cursor-pointer border border-transparent outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-br from-primary to-primary-dark text-white hover:from-primary-light hover:to-primary hover:-translate-y-px hover:shadow-lg hover:shadow-primary/30 active:translate-y-0 text-white;
+  }
+
+  .btn-secondary {
+    @apply bg-bg-tertiary text-text-primary border-border-primary hover:bg-bg-hover hover:border-border-secondary;
+  }
+
+  .btn-danger {
+    @apply bg-gradient-to-br from-danger to-red-600 text-white hover:shadow-lg hover:shadow-danger/30;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+
+  .card {
+    @apply bg-bg-card border border-border-primary rounded-xl p-6 transition-all duration-200 hover:border-border-secondary hover:shadow-md;
+  }
+
+  .card-glass {
+    @apply bg-glass-bg border border-glass-border rounded-2xl p-6 shadow-sm backdrop-blur-md;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-lg bg-bg-tertiary border border-border-primary text-text-primary text-sm transition-all duration-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-text-muted;
+  }
+
+  .textarea {
+    @apply min-h-[120px];
+  }
+
+  .stat-card {
+    @apply rounded-2xl border border-border-primary bg-bg-card px-4 py-5 text-center shadow-sm transition-all;
+  }
+
+  .stat-value {
+    @apply text-2xl font-bold;
+  }
+
+  .stat-label {
+    @apply text-xs uppercase tracking-wide text-text-muted mt-1;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full border border-border-primary bg-bg-tertiary px-2.5 py-1 text-xs font-medium text-text-secondary;
+  }
+
+  .badge-level-1 {
+    @apply border-slate-300 bg-slate-100 text-slate-600;
+  }
+
+  .badge-level-2 {
+    @apply border-blue-300 bg-blue-100 text-blue-600;
+  }
+
+  .badge-level-3 {
+    @apply border-violet-300 bg-violet-100 text-violet-600;
+  }
+
+  .badge-level-4 {
+    @apply border-amber-300 bg-amber-100 text-amber-700;
+  }
+
+  .pincode-tag {
+    @apply inline-flex items-center gap-1 rounded-md border border-border-primary bg-bg-tertiary px-2 py-1 text-xs font-mono text-text-secondary;
+  }
+
+  .empty-state {
+    @apply flex flex-col items-center justify-center text-center gap-2 bg-bg-secondary border border-dashed border-border-primary rounded-2xl px-6 py-12;
+  }
+
+  .empty-state-icon {
+    @apply text-4xl opacity-70;
+  }
+
+  .form-group {
+    @apply flex flex-col gap-2 mb-4;
+  }
+
+  .label {
+    @apply text-sm font-medium text-text-secondary;
+  }
+
+  .form-hint {
+    @apply text-xs text-text-muted;
+  }
+
+  .form-error {
+    @apply mt-1 text-xs text-danger;
+  }
+
+  .qa-metrics {
+    @apply grid grid-cols-3 gap-3;
+  }
+
+  .qa-metric {
+    @apply rounded-xl border border-border-primary bg-bg-tertiary px-3 py-3 text-center;
+  }
+
+  .qa-metric-value {
+    @apply text-lg font-semibold text-text-primary;
+  }
+
+  .qa-metric-value--warning {
+    @apply text-warning;
+  }
+
+  .qa-metric-value--accent {
+    @apply text-accent;
+  }
+
+  .qa-metric-label {
+    @apply text-[11px] uppercase tracking-wide text-text-muted;
+  }
+
+  .escalation-trail {
+    @apply flex flex-col gap-4 pl-10 sm:pl-14;
+  }
+
+  .escalation-node {
+    @apply relative rounded-2xl border border-border-primary bg-bg-card px-4 py-4 shadow-sm;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+html,
+body {
+  @apply h-full bg-bg-primary text-text-primary antialiased;
+}
+
+body {
+  @apply text-[15px] leading-relaxed;
+}
